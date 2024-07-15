@@ -9,14 +9,14 @@ namespace BookYourRoom.Services.Rooms
 {
     public interface IRoomService
     {
-        public IEnumerable<Room> GetAllRooms();
+        public Task<IEnumerable<Room>> GetAllRooms();
 
-        public Room? GetRoomById(int roomId);
+        public Task<Room?> GetRoomById(int roomId);
 
-        public void CreateRoom(Room room);
+        public Task CreateRoom(Room room);
 
-        public void UpdateRoom(Room room);
+        public Task UpdateRoom(Room room);
 
-        public void DeleteRoom(int roomId);
+        public Task DeleteRoom(int roomId);
     }
 }

@@ -9,14 +9,14 @@ namespace BookYourRoom.Services.Bookings
 {
     public interface IBookingService
     {
-        public IEnumerable<Booking> GetAllBookings();
+        public Task<IEnumerable<Booking>> GetAllBookings();
 
-        public Booking? GetBookingById(int bookingId);
+        public Task<Booking?> GetBookingById(int bookingId);
 
-        public void CreateBooking(Booking booking);
+        public Task CreateBooking(Booking booking);
 
-        public void UpdateBooking(Booking booking);
+        public Task UpdateBooking(Booking booking);
 
-        public void DeleteBooking(int bookingId);
+        public Task DeleteBooking(int bookingId);
     }
 }

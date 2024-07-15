@@ -9,14 +9,14 @@ namespace BookYourRoom.Services.Customers
 {
     public interface ICustomerService
     {
-        public IEnumerable<Customer> GetAllCustomers();
+        public Task<IEnumerable<Customer>> GetAllCustomers();
 
-        public Customer? GetCustomerById(int customerId);
+        public Task<Customer?> GetCustomerById(int customerId);
 
-        public void CreateCustomer(Customer customer);
+        public Task CreateCustomer(Customer customer);
 
-        public void UpdateCustomer(Customer customer);
+        public Task UpdateCustomer(Customer customer);
 
-        public void DeleteCustomer(int customerId);
+        public Task DeleteCustomer(int customerId);
     }
 }
