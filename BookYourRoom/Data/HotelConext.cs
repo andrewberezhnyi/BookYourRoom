@@ -15,9 +15,8 @@ namespace BookYourRoom.Data
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public HotelContext(DbContextOptions<HotelContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=HotelDB;User Id=sa;Password=skmkqw04012006Tima!;Integrated Security=True;TrustServerCertificate=true;Trusted_Connection=false");
         }
     }
 }
