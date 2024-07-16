@@ -21,7 +21,7 @@
             <Button Content="Add" Width="75" Height="30" Margin="10,0" Grid.Column="1"/>
         </Grid>
 
-        <TabControl Grid.Row="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Hotels}">
+        <TabControl Grid.Row="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Hotels">
                 <DataGrid Name="HotelsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <DataGrid.Columns>
@@ -42,13 +42,33 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Rooms">
-                
+                <DataGrid Name="RoomsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding RoomId}" Width="50"/>
+                        <DataGridTextColumn Header="Number" Binding="{Binding RoomNumber}" Width="200"/>
+                        <DataGridTextColumn Header="HotelId" Binding="{Binding HotelId}" Width="300"/>
+                        <DataGridTemplateColumn Header="Actions" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                        <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
             <TabItem Header="Bookings">
-                
+                <DataGrid Name="BookingsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    
+                </DataGrid>
             </TabItem>
             <TabItem Header="Customers">
-                
+                <DataGrid Name="CustomersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+                </DataGrid>
             </TabItem>
         </TabControl>
     </Grid>
