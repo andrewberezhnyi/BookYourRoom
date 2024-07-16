@@ -27,7 +27,7 @@
         <TabControl Grid.Row="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Hotels">
                 <StackPanel>
-                    <Button Content="Add Hotel" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch"/>
+                    <Button Content="Add Hotel" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddHotelButton_Click"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid Name="HotelsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Height="300">

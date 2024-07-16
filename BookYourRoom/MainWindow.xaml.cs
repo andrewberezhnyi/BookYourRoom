@@ -3,6 +3,7 @@ using BookYourRoom.Services.Bookings;
 using BookYourRoom.Services.Customers;
 using BookYourRoom.Services.Hotels;
 using BookYourRoom.Services.Rooms;
+using BookYourRoom.Forms.Hotels;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
@@ -100,6 +101,13 @@ namespace BookYourRoom
             var bookings = await _bookingService.GetAllBookings();
             Bookings = new ObservableCollection<Booking>(bookings);
             BookingsDataGrid.ItemsSource = Bookings;
+        }
+
+        private void AddHotelButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddHotel addHotelWindow = new AddHotel();
+            addHotelWindow.ShowDialog();
+            LoadHotels();
         }
     }
 }
