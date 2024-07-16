@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookYourRoom"
         mc:Ignorable="d"
-        Title="BookYour Room" Height="450" Width="800">
+        Title="BookYour Room" Height="500" Width="800">
 
     <Window.Resources>
         <Style x:Key="CenteredTextStyle" TargetType="TextBlock">
