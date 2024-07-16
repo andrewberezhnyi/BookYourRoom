@@ -66,6 +66,11 @@ namespace BookYourRoom
                 {
                     await LoadBookings();
                 }
+
+                if (selectedTab.Header.ToString() == "Customers")
+                {
+                    await LoadCustomers();
+                }
             }
         }
 
