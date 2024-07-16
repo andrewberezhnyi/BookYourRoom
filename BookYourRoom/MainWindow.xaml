@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BookYourRoom"
         mc:Ignorable="d"
         Title="BookYour Room" Height="450" Width="800">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,93 +14,100 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="BookYourRoom" FontSize="24" VerticalAlignment="Center" Grid.Column="0"/>
-            <Button Content="Add" Width="75" Height="30" Margin="10,0" Grid.Column="1"/>
+            <TextBlock Text="BookYourRoom" FontSize="24" VerticalAlignment="Center"/>
         </Grid>
 
         <TabControl Grid.Row="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Hotels">
-                <DataGrid Name="HotelsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding HotelId}" Width="50"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
-                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="300"/>
-                        <DataGridTemplateColumn Header="Actions" Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="Edit" Width="40" Height="20" Margin="5"/>
-                                        <Button Content="Delete" Width="40" Height="20" Margin="5"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <StackPanel>
+                    <Button Content="Add Hotel" Width="Auto" Height="20" Margin="10" HorizontalAlignment="Stretch"/>
+                    <DataGrid Name="HotelsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding HotelId}" Width="50"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+                            <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="300"/>
+                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                            <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Rooms">
-                <DataGrid Name="RoomsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding RoomId}"/>
-                        <DataGridTextColumn Header="Number" Binding="{Binding RoomNumber}"/>
-                        <DataGridTextColumn Header="Hotel ID" Binding="{Binding HotelId}"/>
-                        <DataGridTemplateColumn Header="Actions" Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="Edit" Width="40" Height="20" Margin="5"/>
-                                        <Button Content="Delete" Width="40" Height="20" Margin="5"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <StackPanel>
+                    <Button Content="Add Room" Width="Auto" Height="20" Margin="10" HorizontalAlignment="Stretch"/>
+                    <DataGrid Name="RoomsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding RoomId}"/>
+                            <DataGridTextColumn Header="Number" Binding="{Binding RoomNumber}"/>
+                            <DataGridTextColumn Header="Hotel ID" Binding="{Binding HotelId}"/>
+                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                            <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Bookings">
-                <DataGrid Name="BookingsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding BookingId}"/>
-                        <DataGridTextColumn Header="Check In" Binding="{Binding CheckInDate}"/>
-                        <DataGridTextColumn Header="Check Out" Binding="{Binding CheckOutDate}"/>
-                        <DataGridTextColumn Header="Room ID" Binding="{Binding RoomId}"/>
-                        <DataGridTextColumn Header="Customer ID" Binding="{Binding CustomerId}"/>
-                        <DataGridTemplateColumn Header="Actions">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="Edit" Width="40" Height="20" Margin="5"/>
-                                        <Button Content="Delete" Width="40" Height="20" Margin="5"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <StackPanel>
+                    <Button Content="Add Booking" Width="Auto" Height="20" Margin="10" HorizontalAlignment="Stretch"/>
+                    <DataGrid Name="BookingsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding BookingId}"/>
+                            <DataGridTextColumn Header="Check In" Binding="{Binding CheckInDate}"/>
+                            <DataGridTextColumn Header="Check Out" Binding="{Binding CheckOutDate}"/>
+                            <DataGridTextColumn Header="Room ID" Binding="{Binding RoomId}"/>
+                            <DataGridTextColumn Header="Customer ID" Binding="{Binding CustomerId}"/>
+                            <DataGridTemplateColumn Header="Actions">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                            <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Customers">
-                <DataGrid Name="CustomersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding CustomerId}"/>
-                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
-                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-                        <DataGridTemplateColumn Header="Actions">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="Edit" Width="40" Height="20" Margin="5"/>
-                                        <Button Content="Delete" Width="40" Height="20" Margin="5"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <StackPanel>
+                    <Button Content="Add Customer" Width="Auto" Height="20" Margin="10" HorizontalAlignment="Stretch"/>
+                    <DataGrid Name="CustomersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding CustomerId}"/>
+                            <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                            <DataGridTemplateColumn Header="Actions">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                            <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>
