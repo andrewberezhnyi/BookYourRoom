@@ -44,9 +44,9 @@
             <TabItem Header="Rooms">
                 <DataGrid Name="RoomsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding RoomId}" Width="50"/>
-                        <DataGridTextColumn Header="Number" Binding="{Binding RoomNumber}" Width="200"/>
-                        <DataGridTextColumn Header="HotelId" Binding="{Binding HotelId}" Width="300"/>
+                        <DataGridTextColumn Header="ID" Binding="{Binding RoomId}"/>
+                        <DataGridTextColumn Header="Number" Binding="{Binding RoomNumber}"/>
+                        <DataGridTextColumn Header="Hotel ID" Binding="{Binding HotelId}"/>
                         <DataGridTemplateColumn Header="Actions" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -62,7 +62,23 @@
             </TabItem>
             <TabItem Header="Bookings">
                 <DataGrid Name="BookingsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding BookingId}"/>
+                        <DataGridTextColumn Header="Check In" Binding="{Binding CheckInDate}"/>
+                        <DataGridTextColumn Header="Check Out" Binding="{Binding CheckOutDate}"/>
+                        <DataGridTextColumn Header="Room ID" Binding="{Binding RoomId}"/>
+                        <DataGridTextColumn Header="Customer ID" Binding="{Binding CustomerId}"/>
+                        <DataGridTemplateColumn Header="Actions">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                        <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Customers">
