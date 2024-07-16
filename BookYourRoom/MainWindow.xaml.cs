@@ -54,12 +54,17 @@ namespace BookYourRoom
             {
                 if (selectedTab.Header.ToString() == "Hotels")
                 {
-                    await LoadRooms();
+                    await LoadHotels();
                 }
 
                 if (selectedTab.Header.ToString() == "Rooms")
                 {
                     await LoadRooms();
+                }
+
+                if (selectedTab.Header.ToString() == "Bookings")
+                {
+                    await LoadBookings();
                 }
             }
         }
