@@ -109,5 +109,19 @@ namespace BookYourRoom
             addHotelWindow.ShowDialog();
             LoadHotels();
         }
+
+        private void EditHotelButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedHotel = (Hotel)HotelsDataGrid.SelectedItem;
+            if (selectedHotel == null)
+            {
+                MessageBox.Show("Please select a hotel to edit.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            UpdateHotel updateHotelWindow = new UpdateHotel(selectedHotel);
+            updateHotelWindow.ShowDialog();
+            LoadHotels();
+        }
     }
 }
