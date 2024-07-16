@@ -83,7 +83,22 @@
             </TabItem>
             <TabItem Header="Customers">
                 <DataGrid Name="CustomersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding CustomerId}"/>
+                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                        <DataGridTemplateColumn Header="Actions">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                        <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
         </TabControl>
