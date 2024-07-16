@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using BookYourRoom.Models;
+using BookYourRoom.Services.Hotels;
+using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +19,28 @@ namespace BookYourRoom
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public ObservableCollection<Hotel> Hotels { get; set; }
+
+        private readonly IHotelService _hotelService;
+
+        public MainWindow(IHotelService hotelService)
         {
             InitializeComponent();
+            _hotelService = hotelService;
+            DataContext = this;
+        }
+
+        protected override async void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+            await LoadHotels();
+        }
+
+        private async Task LoadHotels()
+        {
+            var hotels = await _hotelService.GetAllHotels();
+            Hotels = new ObservableCollection<Hotel>(hotels);
+            HotelsDataGrid.ItemsSource = Hotels;
         }
     }
 }
