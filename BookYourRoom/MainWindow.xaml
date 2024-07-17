@@ -27,7 +27,7 @@
         <TabControl Grid.Row="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Hotels">
                 <StackPanel>
-                    <Button Content="Add Hotel" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch"/>
+                    <Button Content="Add Hotel" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddHotelButton_Click"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid Name="HotelsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Height="300">
@@ -41,7 +41,7 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                                <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditHotelButton_Click"/>
                                                 <Button Content="Delete" Width="40" Height="20" Margin="5"/>
                                             </StackPanel>
                                         </DataTemplate>
@@ -55,7 +55,7 @@
 
             <TabItem Header="Rooms">
                 <StackPanel>
-                    <Button Content="Add Room" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch"/>
+                    <Button Content="Add Room" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddRoomButton_Click"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid Name="RoomsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Height="300">
@@ -69,7 +69,7 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                                <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditRoomButton_Click"/>
                                                 <Button Content="Delete" Width="40" Height="20" Margin="5"/>
                                             </StackPanel>
                                         </DataTemplate>
@@ -83,7 +83,7 @@
 
             <TabItem Header="Bookings">
                 <StackPanel>
-                    <Button Content="Add Booking" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch"/>
+                    <Button Content="Add Booking" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddBookingButton_Click"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid Name="BookingsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Height="300">
@@ -101,7 +101,7 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                                <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditBookingButton_Click"/>
                                                 <Button Content="Delete" Width="40" Height="20" Margin="5"/>
                                             </StackPanel>
                                         </DataTemplate>
@@ -115,7 +115,7 @@
 
             <TabItem Header="Customers">
                 <StackPanel>
-                    <Button Content="Add Customer" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch"/>
+                    <Button Content="Add Customer" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddCustomerButton_Click"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid Name="CustomersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Height="300">
@@ -131,7 +131,7 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <Button Content="Edit" Width="40" Height="20" Margin="5"/>
+                                                <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditCustomerButton_Click"/>
                                                 <Button Content="Delete" Width="40" Height="20" Margin="5"/>
                                             </StackPanel>
                                         </DataTemplate>

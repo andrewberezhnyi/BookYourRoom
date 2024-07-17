@@ -1,0 +1,25 @@
+﻿<Window x:Class="BookYourRoom.Forms.Hotels.AddHotel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookYourRoom.Forms.Hotels"
+        mc:Ignorable="d"
+        Title="Add Hotel" Height="280" Width="400">
+    <Grid Margin="10">
+        <TextBlock Text="Add Hotel" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+
+        <StackPanel Margin="0 20 0 0">
+            <Label Content="Hotel Name" Margin="0 5"/>
+            <TextBox Name="HotelNameTextBox" Width="Auto" Height="30" Margin="0 5"/>
+
+            <Label Content="Address" Margin="0 5"/>
+            <TextBox Name="HotelAddressTextBox" Width="Auto" Height="30" Margin="0 5"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 0">
+                <Button Content="Cancel" Width="75" Margin="5" Click="CancelButton_Click"/>
+                <Button Content="Submit" Width="75" Margin="5" Click="SubmitButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
