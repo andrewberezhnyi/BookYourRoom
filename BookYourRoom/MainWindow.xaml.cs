@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BookYourRoom.Forms.Customer;
+using BookYourRoom.Forms.Customers;
 
 namespace BookYourRoom
 {
@@ -131,6 +131,20 @@ namespace BookYourRoom
             addCustomerWindow.ShowDialog();
             LoadCustomers();
 
+        }
+
+        private void EditCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCustomer = (Customer)CustomersDataGrid.SelectedItem;
+            if (selectedCustomer == null)
+            {
+                MessageBox.Show("Please select a customer to edit.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            UpdateCustomer updateCustomerWindow = new UpdateCustomer(selectedCustomer);
+            updateCustomerWindow.ShowDialog();
+            LoadCustomers();
         }
     }
 }
