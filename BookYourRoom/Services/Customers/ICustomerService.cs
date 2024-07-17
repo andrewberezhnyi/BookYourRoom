@@ -11,8 +11,6 @@ namespace BookYourRoom.Services.Customers
     {
         public Task<IEnumerable<Customer>> GetAllCustomers();
 
-        public Task<Customer?> GetCustomerById(int customerId);
-
         public Task CreateCustomer(Customer customer);
 
         public Task UpdateCustomer(Customer newCustomer);

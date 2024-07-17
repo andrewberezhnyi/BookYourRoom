@@ -24,11 +24,6 @@ namespace BookYourRoom.Services.Customers
 
         }
 
-        public async Task<Customer?> GetCustomerById(int customerId)
-        {
-            return await _context.Customers.FindAsync(customerId);
-        }
-
         public async Task CreateCustomer(Customer customer)
         {
             bool isCustomerConflicts = await IsCustomerConflicts(customer);

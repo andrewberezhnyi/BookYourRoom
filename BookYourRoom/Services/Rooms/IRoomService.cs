@@ -11,8 +11,6 @@ namespace BookYourRoom.Services.Rooms
     {
         public Task<IEnumerable<Room>> GetAllRooms();
 
-        public Task<Room?> GetRoomById(int roomId);
-
         public Task CreateRoom(Room room);
 
         public Task UpdateRoom(Room newRoom);

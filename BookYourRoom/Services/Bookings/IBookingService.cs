@@ -11,8 +11,6 @@ namespace BookYourRoom.Services.Bookings
     {
         public Task<IEnumerable<Booking>> GetAllBookings();
 
-        public Task<Booking?> GetBookingById(int bookingId);
-
         public Task CreateBooking(Booking booking);
 
         public Task UpdateBooking(Booking newBooking);

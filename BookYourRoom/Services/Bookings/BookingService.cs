@@ -23,11 +23,6 @@ namespace BookYourRoom.Services.Bookings
             return await _context.Bookings.Include(c => c.Customer).Include(r => r.Room).ToListAsync();
         }
 
-        public async Task<Booking?> GetBookingById(int bookingId)
-        {
-            return await _context.Bookings.FindAsync(bookingId);
-        }
-
         public async Task CreateBooking(Booking booking)
         {
             bool isValid = await IsBookingValid(booking);

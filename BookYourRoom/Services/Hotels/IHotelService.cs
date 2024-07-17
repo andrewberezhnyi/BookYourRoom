@@ -11,8 +11,6 @@ namespace BookYourRoom.Services.Hotels
     {
         public Task<IEnumerable<Hotel>> GetAllHotels();
 
-        public Task<Hotel?> GetHotelById(int hotelId);
-
         public Task CreateHotel(Hotel hotel);
 
         public Task UpdateHotel(Hotel newHotel);

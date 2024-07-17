@@ -23,11 +23,6 @@ namespace BookYourRoom.Services.Rooms
             return await _context.Rooms.Include(h => h.Hotel).ToListAsync();
         }
 
-        public async Task<Room?> GetRoomById(int roomId)
-        {
-            return await _context.Rooms.FindAsync(roomId);
-        }
-
         public async Task CreateRoom(Room room)
         {
             var roomWithGivenNumber = _context.Rooms.Where(r => r.RoomNumber == room.RoomNumber).FirstOrDefault();

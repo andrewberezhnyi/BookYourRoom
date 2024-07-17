@@ -23,10 +23,6 @@ namespace BookYourRoom.Services.Hotels
             return await _context.Hotels.ToListAsync();
         }
 
-        public async Task<Hotel?> GetHotelById(int hotelId)
-        {
-            return await _context.Hotels.FindAsync(hotelId);
-        }
 
         public async Task CreateHotel(Hotel hotel)
         {
