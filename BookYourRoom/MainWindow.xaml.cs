@@ -154,5 +154,15 @@ namespace BookYourRoom
             addRoomWindow.ShowDialog();
             LoadRooms();
         }
+
+        private async void EditRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (RoomsDataGrid.SelectedItem is Room selectedRoom)
+            {
+                UpdateRoom updateRoomWindow = new UpdateRoom(_hotelService, _roomService, selectedRoom);
+                updateRoomWindow.ShowDialog();
+                await LoadRooms();
+            }
+        }
     }
 }
