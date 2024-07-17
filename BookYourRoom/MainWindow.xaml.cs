@@ -153,6 +153,27 @@ namespace BookYourRoom
             LoadHotels();
         }
 
+        private async void DeleteHotelButton_Click(Object sender, RoutedEventArgs e)
+        {
+            var selectedHotel = (Hotel)HotelsDataGrid.SelectedItem;
+            if (selectedHotel == null)
+            {
+                MessageBox.Show("Please select a hotel to delete.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                await _hotelService.DeleteHotel(selectedHotel.HotelId);
+                await LoadHotels();
+
+                MessageBox.Show("Hotel successfully deleted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while deleting hotel: {ex.Message}");
+            }
+        }
+
         private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             AddCustomer addCustomerWindow = new AddCustomer();
