@@ -196,6 +196,27 @@ namespace BookYourRoom
             LoadCustomers();
         }
 
+        private async void DeleteCustomerButton_Click(Object sender, RoutedEventArgs e)
+        {
+            var selectedCustomer = (Customer)CustomersDataGrid.SelectedItem;
+            if (selectedCustomer == null)
+            {
+                MessageBox.Show("Please select a customer to delete.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                await _customerService.DeleteCustomer(selectedCustomer.CustomerId);
+                await LoadCustomers();
+
+                MessageBox.Show("Customer successfully deleted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while deleting customer: {ex.Message}");
+            }
+        }
+
         private void AddRoomButton_Click(object sender, RoutedEventArgs e)
         {
             AddRoom addRoomWindow = new AddRoom(_hotelService, _roomService);

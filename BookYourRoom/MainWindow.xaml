@@ -132,7 +132,7 @@
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditCustomerButton_Click"/>
-                                                <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                                <Button Content="Delete" Width="40" Height="20" Margin="5" Click="DeleteCustomerButton_Click"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
