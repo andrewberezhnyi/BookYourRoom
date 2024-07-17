@@ -191,7 +191,7 @@ namespace BookYourRoom
                 return;
             }
 
-            UpdateCustomer updateCustomerWindow = new UpdateCustomer(selectedCustomer);
+            UpdateCustomer updateCustomerWindow = new UpdateCustomer(selectedCustomer, _customerService);
             updateCustomerWindow.ShowDialog();
             LoadCustomers();
         }

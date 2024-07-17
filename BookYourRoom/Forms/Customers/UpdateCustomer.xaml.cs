@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookYourRoom.Models;
+using BookYourRoom.Services.Customers;
 
 namespace BookYourRoom.Forms.Customers
 {
@@ -21,11 +22,13 @@ namespace BookYourRoom.Forms.Customers
     public partial class UpdateCustomer : Window
     {
         private readonly Customer _customer;
+        private readonly ICustomerService _customerService;
 
-        public UpdateCustomer(Customer customer)
+        public UpdateCustomer(Customer customer, ICustomerService customerService)
         {
             InitializeComponent();
             _customer = customer;
+            _customerService = customerService;
 
             FirstNameTextBox.Text = customer.FirstName;
             LastNameTextBox.Text = customer.LastName;
@@ -37,7 +40,7 @@ namespace BookYourRoom.Forms.Customers
             this.Close();
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             string firstName = FirstNameTextBox.Text;
             string lastName = LastNameTextBox.Text;
@@ -49,8 +52,18 @@ namespace BookYourRoom.Forms.Customers
                 return;
             }
 
+            try
+            {
+                await _customerService.UpdateCustomer(new Customer() { CustomerId = _customer.CustomerId, FirstName = firstName, LastName = lastName, Email = email });
+                MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while updating customer: {ex.Message}");
+            }
+
+
             this.Close();
         }
     }
