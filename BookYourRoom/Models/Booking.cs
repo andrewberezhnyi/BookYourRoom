@@ -10,7 +10,9 @@ namespace BookYourRoom.Models
     {
         public int BookingId { get; set; }
         public DateTime CheckInDate { get; set; }
+        public string CheckInDateString => CheckInDate.ToString("dddd, dd MMMM yyyy");
         public DateTime CheckOutDate { get; set; }
+        public string CheckOutDateString => CheckInDate.ToString("dddd, dd MMMM yyyy");
         public int RoomId { get; set; }
         public Room Room { get; set; }
         public string RoomNumber => Room.RoomNumber;
