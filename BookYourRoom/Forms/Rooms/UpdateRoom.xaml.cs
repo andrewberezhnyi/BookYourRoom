@@ -38,8 +38,15 @@ namespace BookYourRoom.Forms.Rooms
 
         private async void LoadHotels()
         {
-            var hotels = await _hotelService.GetAllHotels();
-            HotelComboBox.ItemsSource = hotels;
+            try
+            {
+                var hotels = await _hotelService.GetAllHotels();
+                HotelComboBox.ItemsSource = hotels;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading hotels: {ex.Message}");
+            }
         }
 
         private void LoadRoomData()

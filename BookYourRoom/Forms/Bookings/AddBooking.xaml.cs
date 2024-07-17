@@ -44,14 +44,28 @@ namespace BookYourRoom.Forms.Bookings
 
         private async Task LoadCustomers()
         {
-            var customers = await _customerService.GetAllCustomers();
-            CustomerComboBox.ItemsSource = customers;
+            try
+            {
+                var customers = await _customerService.GetAllCustomers();
+                CustomerComboBox.ItemsSource = customers;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading customers: {ex.Message}");
+            }
         }
 
         private async Task LoadRooms()
         {
-            var rooms = await _roomService.GetAllRooms();
-            RoomComboBox.ItemsSource = rooms;
+            try
+            {
+                var rooms = await _roomService.GetAllRooms();
+                RoomComboBox.ItemsSource = rooms;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading rooms: {ex.Message}");
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
