@@ -11,17 +11,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookYourRoom.Models;
 
 namespace BookYourRoom.Forms.Customers
 {
     /// <summary>
-    /// Interaction logic for AddCustomer.xaml
+    /// Interaction logic for UpdateCustomer.xaml
     /// </summary>
-    public partial class AddCustomer : Window
+    public partial class UpdateCustomer : Window
     {
-        public AddCustomer()
+        private readonly Customer _customer;
+
+        public UpdateCustomer(Customer customer)
         {
             InitializeComponent();
+            _customer = customer;
+
+            FirstNameTextBox.Text = customer.FirstName;
+            LastNameTextBox.Text = customer.LastName;
+            EmailTextBox.Text = customer.Email;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -29,7 +37,7 @@ namespace BookYourRoom.Forms.Customers
             this.Close();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             string firstName = FirstNameTextBox.Text;
             string lastName = LastNameTextBox.Text;
@@ -42,7 +50,7 @@ namespace BookYourRoom.Forms.Customers
             }
 
 
-            MessageBox.Show("Customer added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }
