@@ -10,13 +10,13 @@
         <TextBlock Text="Add Hotel" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 20"/>
 
         <StackPanel Margin="0 20 0 0">
-            <Label Content="Hotel Name" Margin="0,5"/>
-            <TextBox Name="HotelNameTextBox" Width="Auto" Height="30" Margin="0,5"/>
+            <Label Content="Hotel Name" Margin="0 5"/>
+            <TextBox Name="HotelNameTextBox" Width="Auto" Height="30" Margin="0 5"/>
 
-            <Label Content="Address" Margin="0,5"/>
-            <TextBox Name="HotelAddressTextBox" Width="Auto" Height="30" Margin="0,5"/>
+            <Label Content="Address" Margin="0 5"/>
+            <TextBox Name="HotelAddressTextBox" Width="Auto" Height="30" Margin="0 5"/>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 0">
                 <Button Content="Cancel" Width="75" Margin="5" Click="CancelButton_Click"/>
                 <Button Content="Submit" Width="75" Margin="5" Click="SubmitButton_Click"/>
             </StackPanel>

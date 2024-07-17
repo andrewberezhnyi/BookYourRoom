@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookYourRoom.Forms.Hotels"
         mc:Ignorable="d"
-        Title="UpdateHotel" Height="280" Width="400">
+        Title="Update Hotel" Height="280" Width="400">
     <Grid Margin="10">
         <TextBlock Text="Update Hotel" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 20"/>
 
