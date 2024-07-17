@@ -176,7 +176,7 @@ namespace BookYourRoom
 
         private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCustomer addCustomerWindow = new AddCustomer();
+            AddCustomer addCustomerWindow = new AddCustomer(_customerService);
             addCustomerWindow.ShowDialog();
             LoadCustomers();
 

@@ -53,14 +53,13 @@ namespace BookYourRoom.Forms.Hotels
             try
             {
                 _hotelService.UpdateHotel(new Hotel() { HotelId = _hotel.HotelId, Name = hotelName, Address = hotelAddress});
+                MessageBox.Show("Hotel updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occured while updating hotel: {ex.Message}");
             }
 
-
-            MessageBox.Show("Hotel updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }

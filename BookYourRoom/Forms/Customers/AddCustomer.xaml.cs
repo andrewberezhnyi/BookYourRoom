@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookYourRoom.Models;
+using BookYourRoom.Services.Customers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,11 @@ namespace BookYourRoom.Forms.Customers
     /// </summary>
     public partial class AddCustomer : Window
     {
-        public AddCustomer()
+        private readonly ICustomerService _customerService;
+
+        public AddCustomer(ICustomerService customerService)
         {
+            _customerService = customerService;
             InitializeComponent();
         }
 
@@ -41,8 +46,16 @@ namespace BookYourRoom.Forms.Customers
                 return;
             }
 
+            try
+            {
+                _customerService.CreateCustomer(new Customer() { FirstName = firstName, LastName = lastName, Email = email });
+                MessageBox.Show("Customer added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while creating customer: {ex.Message}");
+            }
 
-            MessageBox.Show("Customer added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }
