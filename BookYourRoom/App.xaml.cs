@@ -38,6 +38,7 @@ namespace BookYourRoom
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
             var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.Show();
         }

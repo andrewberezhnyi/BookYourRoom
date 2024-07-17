@@ -5,8 +5,143 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookYourRoom"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="BookYour Room" Height="500" Width="800">
 
+    <Window.Resources>
+        <Style x:Key="CenteredTextStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="20">
+            <TextBlock Text="BookYourRoom" FontSize="28" VerticalAlignment="Center"/>
+        </Grid>
+
+        <TabControl Grid.Row="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Hotels">
+                <StackPanel>
+                    <Button Content="Add Hotel" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddHotelButton_Click"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <DataGrid Name="HotelsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                          Height="300">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding HotelId}" Width="50" ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditHotelButton_Click"/>
+                                                <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Rooms">
+                <StackPanel>
+                    <Button Content="Add Room" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddRoomButton_Click"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <DataGrid Name="RoomsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                          Height="300">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding RoomId}" Width="50" ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Number" Binding="{Binding RoomNumber}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Hotel ID" Binding="{Binding HotelId}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditRoomButton_Click"/>
+                                                <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Bookings">
+                <StackPanel>
+                    <Button Content="Add Booking" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddBookingButton_Click"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <DataGrid Name="BookingsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                          Height="300">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding BookingId}" Width="50" ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Check In" Binding="{Binding CheckInDate}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Check Out" Binding="{Binding CheckOutDate}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Room ID" Binding="{Binding RoomId}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Customer ID" Binding="{Binding CustomerId}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditBookingButton_Click"/>
+                                                <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Customers">
+                <StackPanel>
+                    <Button Content="Add Customer" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddCustomerButton_Click"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <DataGrid Name="CustomersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                          Height="300">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding CustomerId}" Width="50" ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"
+                                            ElementStyle="{StaticResource CenteredTextStyle}"/>
+                                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Button Content="Edit" Width="40" Height="20" Margin="5" Click="EditCustomerButton_Click"/>
+                                                <Button Content="Delete" Width="40" Height="20" Margin="5"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
