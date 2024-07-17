@@ -55,7 +55,7 @@
 
             <TabItem Header="Rooms">
                 <StackPanel>
-                    <Button Content="Add Room" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch"/>
+                    <Button Content="Add Room" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddRoomButton_Click"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid Name="RoomsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Height="300">
