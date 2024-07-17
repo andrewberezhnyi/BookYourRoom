@@ -134,7 +134,7 @@ namespace BookYourRoom
 
         private void AddHotelButton_Click(object sender, RoutedEventArgs e)
         {
-            AddHotel addHotelWindow = new AddHotel();
+            AddHotel addHotelWindow = new AddHotel(_hotelService);
             addHotelWindow.ShowDialog();
             LoadHotels();
         }

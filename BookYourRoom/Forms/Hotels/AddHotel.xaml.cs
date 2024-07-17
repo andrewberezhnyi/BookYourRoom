@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookYourRoom.Services.Hotels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,11 @@ namespace BookYourRoom.Forms.Hotels
     /// </summary>
     public partial class AddHotel : Window
     {
-        public AddHotel()
+        private readonly IHotelService _hotelService;
+
+        public AddHotel(IHotelService hotelService)
         {
+            _hotelService = hotelService;
             InitializeComponent();
         }
 
@@ -40,6 +44,15 @@ namespace BookYourRoom.Forms.Hotels
                 return;
             }
 
+            try
+            {
+                _hotelService.CreateHotel(new Models.Hotel() { Address = hotelAddress, Name = hotelName });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while creating hotel: {ex.Message}");
+                throw;
+            }
 
             MessageBox.Show("Hotel added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();

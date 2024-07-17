@@ -47,6 +47,16 @@ namespace BookYourRoom.Forms.Hotels
                 return;
             }
 
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
 
             MessageBox.Show("Hotel updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
