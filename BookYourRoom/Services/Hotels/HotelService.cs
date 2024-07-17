@@ -34,10 +34,25 @@ namespace BookYourRoom.Services.Hotels
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateHotel(Hotel hotel)
+        public async Task UpdateHotel(Hotel newHotel)
         {
-            _context.Hotels.Update(hotel);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var existingHotel = await _context.Hotels.FindAsync(newHotel.HotelId);
+                if (existingHotel != null)
+                {
+                    _context.Entry(existingHotel).CurrentValues.SetValues(newHotel);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new InvalidOperationException("Hotel not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Failed to update the hotel.", ex);
+            }
         }
 
         public async Task DeleteHotel(int hotelId)

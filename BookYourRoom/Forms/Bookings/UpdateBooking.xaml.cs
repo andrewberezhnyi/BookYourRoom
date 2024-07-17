@@ -104,21 +104,26 @@ namespace BookYourRoom.Forms.Bookings
                 return;
             }
 
-            _booking.CheckInDate = checkInDate.Value;
-            _booking.CheckOutDate = checkOutDate.Value;
-            _booking.CustomerId = selectedCustomer.CustomerId;
-            _booking.RoomId = selectedRoom.RoomId;
+            Booking newBooking = new Booking
+            {
+                BookingId = _booking.BookingId,
+                CheckInDate = checkInDate.Value,
+                CheckOutDate = checkOutDate.Value,
+                CustomerId = selectedCustomer.CustomerId,
+                RoomId = selectedRoom.RoomId
+            };
 
             try
             {
-                // await _bookingService.UpdateBooking(_booking);
+                await _bookingService.UpdateBooking(newBooking);
                 MessageBox.Show("Booking updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error updating booking: {ex.Message}");
             }
+
+            this.Close();
         }
     }
 }

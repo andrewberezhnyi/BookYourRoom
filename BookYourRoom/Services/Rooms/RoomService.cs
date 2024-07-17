@@ -30,14 +30,45 @@ namespace BookYourRoom.Services.Rooms
 
         public async Task CreateRoom(Room room)
         {
-            _context.Rooms.Add(room);
-            await _context.SaveChangesAsync();
+            var roomWithGivenNumber = _context.Rooms.Where(r => r.RoomNumber == room.RoomNumber).FirstOrDefault();
+            if (roomWithGivenNumber == null)
+            {
+                _context.Rooms.Add(room);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException($"There is already a room No.{room.RoomNumber}");
+            }
         }
 
-        public async Task UpdateRoom(Room room)
+        public async Task UpdateRoom(Room newRoom)
         {
-            _context.Rooms.Update(room);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var existingRoom = await _context.Rooms.FindAsync(newRoom.RoomId);
+                if (existingRoom != null)
+                {
+                    var roomWithGivenNumber = _context.Rooms.Where(r => r.RoomNumber == newRoom.RoomNumber).FirstOrDefault();
+                    if (roomWithGivenNumber == null)
+                    {
+                        _context.Entry(existingRoom).CurrentValues.SetValues(newRoom);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        throw new ArgumentException($"There is already a room No.{newRoom.RoomNumber}");
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("Room not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Failed to update the room.", ex);
+            }
         }
 
         public async Task DeleteRoom(int roomId)

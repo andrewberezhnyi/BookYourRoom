@@ -30,14 +30,45 @@ namespace BookYourRoom.Services.Bookings
 
         public async Task CreateBooking(Booking booking)
         {
-            _context.Bookings.Add(booking);
-            await _context.SaveChangesAsync();
+            bool isValid = await IsBookingValid(booking);
+            if (!isValid)
+            {
+                _context.Bookings.Add(booking);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException("New reservation conflicting with the old ones");
+            }
         }
 
-        public async Task UpdateBooking(Booking booking)
+        public async Task UpdateBooking(Booking newBooking)
         {
-            _context.Update(booking);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var existingBooking = await _context.Bookings.FindAsync(newBooking.BookingId);
+                if (existingBooking != null)
+                {
+                    bool isValid = await IsBookingValid(newBooking);
+                    if (isValid)
+                    {
+                        _context.Entry(existingBooking).CurrentValues.SetValues(newBooking);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        throw new ArgumentException("New reservation conflicting with the old ones");
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("Booking not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Failed to update the booking.", ex);
+            }
         }
 
         public async Task DeleteBooking(int bookingId)
@@ -48,6 +79,18 @@ namespace BookYourRoom.Services.Bookings
                 _context.Bookings.Remove(booking);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        private async Task<bool> IsBookingValid(Booking newBooking)
+        {
+            var conflictingBookings = await _context.Bookings
+                .Where(b => b.RoomId == newBooking.RoomId &&
+                            ((newBooking.CheckInDate >= b.CheckInDate && newBooking.CheckInDate < b.CheckOutDate) ||
+                             (newBooking.CheckOutDate > b.CheckInDate && newBooking.CheckOutDate <= b.CheckOutDate) ||
+                             (newBooking.CheckInDate <= b.CheckInDate && newBooking.CheckOutDate >= b.CheckOutDate)))
+                .ToListAsync();
+
+            return !conflictingBookings.Any();
         }
     }
 }

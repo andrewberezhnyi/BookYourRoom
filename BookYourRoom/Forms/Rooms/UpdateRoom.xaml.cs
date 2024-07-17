@@ -74,9 +74,16 @@ namespace BookYourRoom.Forms.Rooms
             _room.RoomNumber = roomNumber;
             _room.HotelId = hotelId.Value;
 
-            // await _roomService.UpdateRoom(_room);
+            try
+            {
+                await _roomService.UpdateRoom(_room);
+                MessageBox.Show("Room updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while updating room: {ex.Message}");
+            }
 
-            MessageBox.Show("Room updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }

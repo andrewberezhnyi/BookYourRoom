@@ -134,7 +134,7 @@ namespace BookYourRoom
 
         private void AddHotelButton_Click(object sender, RoutedEventArgs e)
         {
-            AddHotel addHotelWindow = new AddHotel();
+            AddHotel addHotelWindow = new AddHotel(_hotelService);
             addHotelWindow.ShowDialog();
             LoadHotels();
         }
@@ -148,14 +148,35 @@ namespace BookYourRoom
                 return;
             }
 
-            UpdateHotel updateHotelWindow = new UpdateHotel(selectedHotel);
+            UpdateHotel updateHotelWindow = new UpdateHotel(selectedHotel, _hotelService);
             updateHotelWindow.ShowDialog();
             LoadHotels();
         }
 
+        private async void DeleteHotelButton_Click(Object sender, RoutedEventArgs e)
+        {
+            var selectedHotel = (Hotel)HotelsDataGrid.SelectedItem;
+            if (selectedHotel == null)
+            {
+                MessageBox.Show("Please select a hotel to delete.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                await _hotelService.DeleteHotel(selectedHotel.HotelId);
+                await LoadHotels();
+
+                MessageBox.Show("Hotel successfully deleted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while deleting hotel: {ex.Message}");
+            }
+        }
+
         private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCustomer addCustomerWindow = new AddCustomer();
+            AddCustomer addCustomerWindow = new AddCustomer(_customerService);
             addCustomerWindow.ShowDialog();
             LoadCustomers();
 
@@ -170,9 +191,30 @@ namespace BookYourRoom
                 return;
             }
 
-            UpdateCustomer updateCustomerWindow = new UpdateCustomer(selectedCustomer);
+            UpdateCustomer updateCustomerWindow = new UpdateCustomer(selectedCustomer, _customerService);
             updateCustomerWindow.ShowDialog();
             LoadCustomers();
+        }
+
+        private async void DeleteCustomerButton_Click(Object sender, RoutedEventArgs e)
+        {
+            var selectedCustomer = (Customer)CustomersDataGrid.SelectedItem;
+            if (selectedCustomer == null)
+            {
+                MessageBox.Show("Please select a customer to delete.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                await _customerService.DeleteCustomer(selectedCustomer.CustomerId);
+                await LoadCustomers();
+
+                MessageBox.Show("Customer successfully deleted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while deleting customer: {ex.Message}");
+            }
         }
 
         private void AddRoomButton_Click(object sender, RoutedEventArgs e)
@@ -192,6 +234,27 @@ namespace BookYourRoom
             }
         }
 
+        private async void DeleteRoomButton_Click(Object sender, RoutedEventArgs e)
+        {
+            var selectedRoom = (Room)RoomsDataGrid.SelectedItem;
+            if (selectedRoom == null)
+            {
+                MessageBox.Show("Please select a room to delete.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                await _roomService.DeleteRoom(selectedRoom.RoomId);
+                await LoadRooms();
+
+                MessageBox.Show("Room successfully deleted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while deleting room: {ex.Message}");
+            }
+        }
+
         private void AddBookingButton_Click(object sender, RoutedEventArgs e)
         {
             AddBooking addBookingWindow = new AddBooking(_customerService, _roomService, _bookingService);
@@ -206,6 +269,27 @@ namespace BookYourRoom
                 UpdateBooking updateBookingWindow = new UpdateBooking(selectedBooking, _customerService, _roomService, _bookingService);
                 updateBookingWindow.ShowDialog();
                 LoadBookings();
+            }
+        }
+
+        private async void DeleteBookingButton_Click(Object sender, RoutedEventArgs e)
+        {
+            var selectedBooking = (Booking)BookingsDataGrid.SelectedItem;
+            if (selectedBooking == null)
+            {
+                MessageBox.Show("Please select a booking to delete.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                await _bookingService.DeleteBooking(selectedBooking.BookingId);
+                await LoadBookings();
+
+                MessageBox.Show("Booking successfully deleted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while deleting booking: {ex.Message}");
             }
         }
     }

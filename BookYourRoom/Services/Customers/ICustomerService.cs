@@ -15,7 +15,7 @@ namespace BookYourRoom.Services.Customers
 
         public Task CreateCustomer(Customer customer);
 
-        public Task UpdateCustomer(Customer customer);
+        public Task UpdateCustomer(Customer newCustomer);
 
         public Task DeleteCustomer(int customerId);
     }

@@ -15,7 +15,7 @@ namespace BookYourRoom.Services.Rooms
 
         public Task CreateRoom(Room room);
 
-        public Task UpdateRoom(Room room);
+        public Task UpdateRoom(Room newRoom);
 
         public Task DeleteRoom(int roomId);
     }
