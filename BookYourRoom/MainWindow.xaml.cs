@@ -271,5 +271,26 @@ namespace BookYourRoom
                 LoadBookings();
             }
         }
+
+        private async void DeleteBookingButton_Click(Object sender, RoutedEventArgs e)
+        {
+            var selectedBooking = (Booking)BookingsDataGrid.SelectedItem;
+            if (selectedBooking == null)
+            {
+                MessageBox.Show("Please select a booking to delete.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                await _bookingService.DeleteBooking(selectedBooking.BookingId);
+                await LoadBookings();
+
+                MessageBox.Show("Booking successfully deleted!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while deleting booking: {ex.Message}");
+            }
+        }
     }
 }
