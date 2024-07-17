@@ -56,24 +56,20 @@ namespace BookYourRoom
         {
             if (e.AddedItems.Count > 0 && e.AddedItems[0] is TabItem selectedTab)
             {
-                if (selectedTab.Header.ToString() == "Hotels")
+                switch (selectedTab.Header.ToString())
                 {
-                    await LoadHotels();
-                }
-
-                if (selectedTab.Header.ToString() == "Rooms")
-                {
-                    await LoadRooms();
-                }
-
-                if (selectedTab.Header.ToString() == "Bookings")
-                {
-                    await LoadBookings();
-                }
-
-                if (selectedTab.Header.ToString() == "Customers")
-                {
-                    await LoadCustomers();
+                    case "Hotels":
+                        await LoadHotels();
+                        break;
+                    case "Rooms":
+                        await LoadRooms();
+                        break;
+                    case "Bookings":
+                        await LoadBookings();
+                        break;
+                    case "Customers":
+                        await LoadCustomers();
+                        break;
                 }
             }
         }
