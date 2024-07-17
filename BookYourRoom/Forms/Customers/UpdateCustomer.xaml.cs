@@ -52,6 +52,13 @@ namespace BookYourRoom.Forms.Customers
                 return;
             }
 
+            string? validationError = ValidateCustomerData(firstName, lastName, email);
+            if (validationError != null)
+            {
+                MessageBox.Show(validationError, "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             try
             {
                 await _customerService.UpdateCustomer(new Customer() { CustomerId = _customer.CustomerId, FirstName = firstName, LastName = lastName, Email = email });
@@ -65,6 +72,14 @@ namespace BookYourRoom.Forms.Customers
 
 
             this.Close();
+        }
+
+        private string? ValidateCustomerData(string firstName, string lastName, string email)
+        {
+            if (firstName.Length < 2) return "Hotel name should be at least 2 symbols long";
+            if (lastName.Length < 2) return "Hotel address should be at least 2 symbols long";
+            if (!email.Contains("@") || !email.Contains(".")) return "Wrong email format";
+            return null;
         }
     }
 }

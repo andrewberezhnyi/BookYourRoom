@@ -46,6 +46,13 @@ namespace BookYourRoom.Forms.Customers
                 return;
             }
 
+            string? validationError = ValidateCustomerData(firstName, lastName, email);
+            if (validationError != null)
+            {
+                MessageBox.Show(validationError, "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             try
             {
                 _customerService.CreateCustomer(new Customer() { FirstName = firstName, LastName = lastName, Email = email });
@@ -57,6 +64,14 @@ namespace BookYourRoom.Forms.Customers
             }
 
             this.Close();
+        }
+
+        private string? ValidateCustomerData(string firstName, string lastName, string email)
+        {
+            if (firstName.Length < 2) return "First name should be at least 2 symbols long";
+            if (lastName.Length < 2) return "Last name should be at least 2 symbols long";
+            if (!email.Contains("@") || !email.Contains(".")) return "Wrong email format";
+            return null;
         }
     }
 }
