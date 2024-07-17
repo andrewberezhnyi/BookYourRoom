@@ -148,7 +148,7 @@ namespace BookYourRoom
                 return;
             }
 
-            UpdateHotel updateHotelWindow = new UpdateHotel(selectedHotel);
+            UpdateHotel updateHotelWindow = new UpdateHotel(selectedHotel, _hotelService);
             updateHotelWindow.ShowDialog();
             LoadHotels();
         }

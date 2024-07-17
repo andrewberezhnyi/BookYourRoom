@@ -1,4 +1,5 @@
 ﻿using BookYourRoom.Models;
+using BookYourRoom.Services.Hotels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,13 @@ namespace BookYourRoom.Forms.Hotels
     public partial class UpdateHotel : Window
     {
         private readonly Hotel _hotel;
+        private readonly IHotelService _hotelService;
 
-        public UpdateHotel(Hotel hotel)
+        public UpdateHotel(Hotel hotel, IHotelService hotelService)
         {
             InitializeComponent();
             _hotel = hotel;
+            _hotelService = hotelService;
 
             HotelNameTextBox.Text = hotel.Name;
             HotelAddressTextBox.Text = hotel.Address;
@@ -49,11 +52,11 @@ namespace BookYourRoom.Forms.Hotels
 
             try
             {
-
+                _hotelService.UpdateHotel(new Hotel() { HotelId = _hotel.HotelId, Name = hotelName, Address = hotelAddress});
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show($"An error occured while updating hotel: {ex.Message}");
                 throw;
             }
 
