@@ -62,9 +62,16 @@ namespace BookYourRoom.Forms.Rooms
                 return;
             }
 
-            // await _roomService.CreateRoom(new Room { RoomNumber = roomNumber, HotelId = hotelId.Value });
+            try
+            {
+                await _roomService.CreateRoom(new Room { RoomNumber = roomNumber, HotelId = hotelId.Value });
+                MessageBox.Show("Room added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while creating room: {ex.Message}");
+            }
 
-            MessageBox.Show("Room added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }

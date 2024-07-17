@@ -52,7 +52,6 @@ namespace BookYourRoom.Forms.Hotels
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occured while creating hotel: {ex.Message}");
-                throw;
             }
 
             this.Close();
