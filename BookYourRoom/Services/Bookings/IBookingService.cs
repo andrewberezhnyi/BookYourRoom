@@ -15,7 +15,7 @@ namespace BookYourRoom.Services.Bookings
 
         public Task CreateBooking(Booking booking);
 
-        public Task UpdateBooking(Booking booking);
+        public Task UpdateBooking(Booking newBooking);
 
         public Task DeleteBooking(int bookingId);
     }
