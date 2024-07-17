@@ -62,6 +62,12 @@ namespace BookYourRoom.Forms.Rooms
                 return;
             }
 
+            if (!int.TryParse(roomNumber, out _))
+            {
+                MessageBox.Show("Room number should be a number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             try
             {
                 await _roomService.CreateRoom(new Room { RoomNumber = roomNumber, HotelId = hotelId.Value });
