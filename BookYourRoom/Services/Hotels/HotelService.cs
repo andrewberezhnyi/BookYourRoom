@@ -30,8 +30,16 @@ namespace BookYourRoom.Services.Hotels
 
         public async Task CreateHotel(Hotel hotel)
         {
-            _context.Hotels.Add(hotel);
-            await _context.SaveChangesAsync();
+            bool isHotelConflicts = await IsHotelConflicts(hotel);
+            if (!isHotelConflicts)
+            {
+                _context.Hotels.Add(hotel);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException("There is already a hotel with the same address.");
+            }
         }
 
         public async Task UpdateHotel(Hotel newHotel)
@@ -41,8 +49,16 @@ namespace BookYourRoom.Services.Hotels
                 var existingHotel = await _context.Hotels.FindAsync(newHotel.HotelId);
                 if (existingHotel != null)
                 {
-                    _context.Entry(existingHotel).CurrentValues.SetValues(newHotel);
-                    await _context.SaveChangesAsync();
+                    bool isHotelConflicts = await IsHotelConflicts(newHotel);
+                    if (!isHotelConflicts)
+                    {
+                        _context.Entry(existingHotel).CurrentValues.SetValues(newHotel);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        throw new ArgumentException("There is already a hotel with the same address.");
+                    }
                 }
                 else
                 {
@@ -63,6 +79,13 @@ namespace BookYourRoom.Services.Hotels
                 _context.Hotels.Remove(hotel);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<bool> IsHotelConflicts(Hotel hotel)
+        {
+            if (_context.Hotels.ToList().Count == 0) return false;
+            var hotelsWithSameAddress = await _context.Hotels.Where(h => h.Address == hotel.Address).ToListAsync();
+            return hotelsWithSameAddress.Any();
         }
     }
 }

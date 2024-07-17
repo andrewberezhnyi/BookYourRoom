@@ -45,6 +45,7 @@ namespace BookYourRoom.Forms.Hotels
             }
 
             string? validationError = ValidateHotelData(hotelName, hotelAddress);
+
             if (validationError != null)
             {
                 MessageBox.Show(validationError, "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
