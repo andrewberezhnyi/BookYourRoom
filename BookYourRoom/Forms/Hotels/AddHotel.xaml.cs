@@ -33,7 +33,7 @@ namespace BookYourRoom.Forms.Hotels
             this.Close();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             string hotelName = HotelNameTextBox.Text;
             string hotelAddress = HotelAddressTextBox.Text;
@@ -44,9 +44,18 @@ namespace BookYourRoom.Forms.Hotels
                 return;
             }
 
+            string? validationError = ValidateHotelData(hotelName, hotelAddress);
+
+            if (validationError != null)
+            {
+                MessageBox.Show(validationError, "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
             try
             {
-                _hotelService.CreateHotel(new Models.Hotel() { Address = hotelAddress, Name = hotelName });
+                await _hotelService.CreateHotel(new Models.Hotel() { Address = hotelAddress, Name = hotelName });
                 MessageBox.Show("Hotel added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
@@ -55,6 +64,13 @@ namespace BookYourRoom.Forms.Hotels
             }
 
             this.Close();
+        }
+
+        private string? ValidateHotelData(string hotelName, string hotelAddress)
+        {
+            if (hotelName.Length < 4) return "Hotel name should be at least 4 symbols long";
+            if (hotelAddress.Length < 8) return "Hotel address should be at least 8 symbols long";
+            return null;
         }
     }
 }

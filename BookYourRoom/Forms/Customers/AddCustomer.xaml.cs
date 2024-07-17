@@ -34,7 +34,7 @@ namespace BookYourRoom.Forms.Customers
             this.Close();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             string firstName = FirstNameTextBox.Text;
             string lastName = LastNameTextBox.Text;
@@ -46,17 +46,33 @@ namespace BookYourRoom.Forms.Customers
                 return;
             }
 
+            string? validationError = ValidateCustomerData(firstName, lastName, email);
+            if (validationError != null)
+            {
+                MessageBox.Show(validationError, "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             try
             {
-                _customerService.CreateCustomer(new Customer() { FirstName = firstName, LastName = lastName, Email = email });
-                MessageBox.Show("Customer added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                await _customerService.CreateCustomer(new Customer() { FirstName = firstName, LastName = lastName, Email = email });
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occured while creating customer: {ex.Message}");
+                return;
             }
 
+            MessageBox.Show("Customer added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
+        }
+
+        private string? ValidateCustomerData(string firstName, string lastName, string email)
+        {
+            if (firstName.Length < 2) return "First name should be at least 2 symbols long";
+            if (lastName.Length < 2) return "Last name should be at least 2 symbols long";
+            if (!email.Contains("@") || !email.Contains(".")) return "Wrong email format";
+            return null;
         }
     }
 }

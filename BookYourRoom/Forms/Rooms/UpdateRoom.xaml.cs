@@ -71,6 +71,12 @@ namespace BookYourRoom.Forms.Rooms
                 return;
             }
 
+            if (!int.TryParse(roomNumber, out _))
+            {
+                MessageBox.Show("Room number should be a number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             _room.RoomNumber = roomNumber;
             _room.HotelId = hotelId.Value;
 

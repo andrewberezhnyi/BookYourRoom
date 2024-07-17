@@ -31,8 +31,16 @@ namespace BookYourRoom.Services.Customers
 
         public async Task CreateCustomer(Customer customer)
         {
-            _context.Customers.Add(customer);
-            await _context.SaveChangesAsync();
+            bool isCustomerConflicts = await IsCustomerConflicts(customer);
+            if (!isCustomerConflicts)
+            {
+                _context.Customers.Add(customer);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException("There is already a customer with the same email");
+            }
         }
 
         public async Task UpdateCustomer(Customer newCustomer)
@@ -42,8 +50,16 @@ namespace BookYourRoom.Services.Customers
                 var existingCustomer = await _context.Customers.FindAsync(newCustomer.CustomerId);
                 if (existingCustomer != null)
                 {
-                    _context.Entry(existingCustomer).CurrentValues.SetValues(newCustomer);
-                    await _context.SaveChangesAsync();
+                    bool isCustomerConflicts = await IsCustomerConflicts(newCustomer);
+                    if (!isCustomerConflicts)
+                    {
+                        _context.Entry(existingCustomer).CurrentValues.SetValues(newCustomer);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        throw new ArgumentException("There is already a customer with the same email");
+                    }
                 }
                 else
                 {
@@ -64,6 +80,13 @@ namespace BookYourRoom.Services.Customers
                 _context.Customers.Remove(customer);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<bool> IsCustomerConflicts(Customer customer)
+        {
+            if (_context.Customers.ToList().Count == 0) return false;
+            var customersWithSameEmail = await _context.Customers.Where(c => c.Email == customer.Email).ToListAsync();
+            return customersWithSameEmail.Any();
         }
     }
 }
