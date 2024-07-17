@@ -80,30 +80,60 @@ namespace BookYourRoom
 
         private async Task LoadHotels()
         {
-            var hotels = await _hotelService.GetAllHotels();
-            Hotels = new ObservableCollection<Hotel>(hotels);
-            HotelsDataGrid.ItemsSource = Hotels;
+
+            try
+            {
+                var hotels = await _hotelService.GetAllHotels();
+                Hotels = new ObservableCollection<Hotel>(hotels);
+                HotelsDataGrid.ItemsSource = Hotels;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading hotels: {ex.Message}");
+            }
+
         }
 
         private async Task LoadRooms()
         {
-            var rooms = await _roomService.GetAllRooms();
-            Rooms = new ObservableCollection<Room>(rooms);
-            RoomsDataGrid.ItemsSource = Rooms;
+            try
+            {
+                var rooms = await _roomService.GetAllRooms();
+                Rooms = new ObservableCollection<Room>(rooms);
+                RoomsDataGrid.ItemsSource = Rooms;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading rooms: {ex.Message}");
+            }
         }
 
         private async Task LoadCustomers()
         {
-            var customers = await _customerService.GetAllCustomers();
-            Customers = new ObservableCollection<Customer>(customers);
-            CustomersDataGrid.ItemsSource = Customers;
+            try
+            {
+                var customers = await _customerService.GetAllCustomers();
+                Customers = new ObservableCollection<Customer>(customers);
+                CustomersDataGrid.ItemsSource = Customers;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading customers: {ex.Message}");
+            }
         }
 
         private async Task LoadBookings()
         {
-            var bookings = await _bookingService.GetAllBookings();
-            Bookings = new ObservableCollection<Booking>(bookings);
-            BookingsDataGrid.ItemsSource = Bookings;
+            try
+            {
+                var bookings = await _bookingService.GetAllBookings();
+                Bookings = new ObservableCollection<Booking>(bookings);
+                BookingsDataGrid.ItemsSource = Bookings;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading bookings: {ex.Message}");
+            }
         }
 
         private void AddHotelButton_Click(object sender, RoutedEventArgs e)
@@ -162,7 +192,7 @@ namespace BookYourRoom
             {
                 UpdateRoom updateRoomWindow = new UpdateRoom(_hotelService, _roomService, selectedRoom);
                 updateRoomWindow.ShowDialog();
-                await LoadRooms();
+                LoadRooms();
             }
         }
 
@@ -171,6 +201,16 @@ namespace BookYourRoom
             AddBooking addBookingWindow = new AddBooking(_customerService, _roomService, _bookingService);
             addBookingWindow.ShowDialog();
             LoadBookings();
+        }
+
+        private void EditBookingButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (BookingsDataGrid.SelectedItem is Booking selectedBooking)
+            {
+                UpdateBooking updateBookingWindow = new UpdateBooking(selectedBooking, _customerService, _roomService, _bookingService);
+                updateBookingWindow.ShowDialog();
+                LoadBookings();
+            }
         }
     }
 }
