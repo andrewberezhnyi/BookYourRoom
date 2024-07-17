@@ -115,7 +115,7 @@
 
             <TabItem Header="Customers">
                 <StackPanel>
-                    <Button Content="Add Customer" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch"/>
+                    <Button Content="Add Customer" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddCustomerButton_Click"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid Name="CustomersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Height="300">
