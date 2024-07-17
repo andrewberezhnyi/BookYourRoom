@@ -27,7 +27,7 @@ namespace BookYourRoom
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<HotelContext>(options => options.UseSqlServer("Data Source=localhost;Initial Catalog=HotelDB;User Id=sa;Password=skmkqw04012006Tima!;Integrated Security=True;TrustServerCertificate=true;Trusted_Connection=false"));
+            services.AddDbContext<HotelContext>(options => options.UseInMemoryDatabase("LocalDB"));
             services.AddTransient<IHotelService, HotelService>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IRoomService, RoomService>();

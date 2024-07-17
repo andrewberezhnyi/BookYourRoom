@@ -31,7 +31,7 @@ namespace BookYourRoom.Services.Bookings
         public async Task CreateBooking(Booking booking)
         {
             bool isValid = await IsBookingValid(booking);
-            if (!isValid)
+            if (isValid)
             {
                 _context.Bookings.Add(booking);
                 await _context.SaveChangesAsync();
@@ -83,6 +83,7 @@ namespace BookYourRoom.Services.Bookings
 
         private async Task<bool> IsBookingValid(Booking newBooking)
         {
+            if (_context.Bookings.ToList().Count == 0) return true;
             var conflictingBookings = await _context.Bookings
                 .Where(b => b.RoomId == newBooking.RoomId &&
                             ((newBooking.CheckInDate >= b.CheckInDate && newBooking.CheckInDate < b.CheckOutDate) ||
