@@ -39,7 +39,7 @@ namespace BookYourRoom.Forms.Hotels
             this.Close();
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             string hotelName = HotelNameTextBox.Text;
             string hotelAddress = HotelAddressTextBox.Text;
@@ -59,7 +59,7 @@ namespace BookYourRoom.Forms.Hotels
 
             try
             {
-                _hotelService.UpdateHotel(new Hotel() { HotelId = _hotel.HotelId, Name = hotelName, Address = hotelAddress});
+                await _hotelService.UpdateHotel(new Hotel() { HotelId = _hotel.HotelId, Name = hotelName, Address = hotelAddress});
                 MessageBox.Show("Hotel updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

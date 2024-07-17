@@ -62,15 +62,14 @@ namespace BookYourRoom.Forms.Customers
             try
             {
                 await _customerService.UpdateCustomer(new Customer() { CustomerId = _customer.CustomerId, FirstName = firstName, LastName = lastName, Email = email });
-                MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occured while updating customer: {ex.Message}");
+                return;
             }
 
-
+            MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
 

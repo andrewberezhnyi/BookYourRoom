@@ -33,7 +33,7 @@ namespace BookYourRoom.Forms.Hotels
             this.Close();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             string hotelName = HotelNameTextBox.Text;
             string hotelAddress = HotelAddressTextBox.Text;
@@ -55,7 +55,7 @@ namespace BookYourRoom.Forms.Hotels
 
             try
             {
-                _hotelService.CreateHotel(new Models.Hotel() { Address = hotelAddress, Name = hotelName });
+                await _hotelService.CreateHotel(new Models.Hotel() { Address = hotelAddress, Name = hotelName });
                 MessageBox.Show("Hotel added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

@@ -34,7 +34,7 @@ namespace BookYourRoom.Forms.Customers
             this.Close();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             string firstName = FirstNameTextBox.Text;
             string lastName = LastNameTextBox.Text;
@@ -55,14 +55,15 @@ namespace BookYourRoom.Forms.Customers
 
             try
             {
-                _customerService.CreateCustomer(new Customer() { FirstName = firstName, LastName = lastName, Email = email });
-                MessageBox.Show("Customer added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                await _customerService.CreateCustomer(new Customer() { FirstName = firstName, LastName = lastName, Email = email });
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occured while creating customer: {ex.Message}");
+                return;
             }
 
+            MessageBox.Show("Customer added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
 
