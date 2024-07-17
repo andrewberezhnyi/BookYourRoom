@@ -35,10 +35,25 @@ namespace BookYourRoom.Services.Customers
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateCustomer(Customer customer)
+        public async Task UpdateCustomer(Customer newCustomer)
         {
-            _context.Customers.Update(customer);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var existingCustomer = await _context.Customers.FindAsync(newCustomer.CustomerId);
+                if (existingCustomer != null)
+                {
+                    _context.Entry(existingCustomer).CurrentValues.SetValues(newCustomer);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new InvalidOperationException("Customer not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Failed to update the customer.", ex);
+            }
         }
 
         public async Task DeleteCustomer(int customerId)
