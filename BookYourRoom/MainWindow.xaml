@@ -83,7 +83,7 @@
 
             <TabItem Header="Bookings">
                 <StackPanel>
-                    <Button Content="Add Booking" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch"/>
+                    <Button Content="Add Booking" Width="Auto" Height="30" Margin="10" HorizontalAlignment="Stretch" Click="AddBookingButton_Click"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid Name="BookingsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Height="300">

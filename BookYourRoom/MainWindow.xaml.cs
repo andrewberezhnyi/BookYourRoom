@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookYourRoom.Forms.Customers;
 using BookYourRoom.Forms.Rooms;
+using BookYourRoom.Forms.Bookings;
 
 namespace BookYourRoom
 {
@@ -163,6 +164,13 @@ namespace BookYourRoom
                 updateRoomWindow.ShowDialog();
                 await LoadRooms();
             }
+        }
+
+        private void AddBookingButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddBooking addBookingWindow = new AddBooking(_customerService, _roomService, _bookingService);
+            addBookingWindow.ShowDialog();
+            LoadBookings();
         }
     }
 }
