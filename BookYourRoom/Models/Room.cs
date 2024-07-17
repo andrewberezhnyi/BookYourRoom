@@ -12,6 +12,8 @@ namespace BookYourRoom.Models
         public string RoomNumber { get; set; }
         public int HotelId { get; set; }
         public Hotel Hotel { get; set; }
+        
+        public string HotelName => Hotel.Name;
         public ICollection<Booking> Bookings { get; set; }
     }
 }

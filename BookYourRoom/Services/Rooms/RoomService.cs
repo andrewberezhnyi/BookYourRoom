@@ -20,7 +20,7 @@ namespace BookYourRoom.Services.Rooms
 
         public async Task<IEnumerable<Room>> GetAllRooms()
         {
-            return await _context.Rooms.ToListAsync();
+            return await _context.Rooms.Include(h => h.Hotel).ToListAsync();
         }
 
         public async Task<Room?> GetRoomById(int roomId)
