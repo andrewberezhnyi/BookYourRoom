@@ -100,9 +100,16 @@ namespace BookYourRoom.Forms.Bookings
                 RoomId = roomId.Value
             };
 
-            // await _bookingService.CreateBooking(newBooking);
+            try
+            {
+                await _bookingService.CreateBooking(newBooking);
+                MessageBox.Show("Booking added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while creating booking: {ex.Message}");
+            }
 
-            MessageBox.Show("Booking added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }
